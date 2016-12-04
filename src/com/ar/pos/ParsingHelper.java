@@ -20,7 +20,9 @@ public class ParsingHelper {
     private final String regEXequal = "=";
     private final String taggarName="english-left3words-distsim.tagger";
     private MaxentTagger tagger;
-    private StanfordCoreNLP pipeline;
+    @SuppressWarnings("unused")
+	private StanfordCoreNLP pipeline;
+    
 	ParsingHelper()
     {
   	    this.tagger = new MaxentTagger(taggarName);  
@@ -52,31 +54,26 @@ public class ParsingHelper {
         return POSSentence;
     }
     
-    public HashMap<String,LinkedList<String>> getTaggedMap(String input,String taggedSentence)
+    @SuppressWarnings("unused")
+	public HashMap<String,LinkedList<String>> getTaggedMap(String input,String taggedSentence)
     {
-  	  
-  	  	//System.out.println(input);
-  	  	//System.out.println(taggedSentence);
   	    String tokenizeRequest[] = input.split("\\s+");
-  	    //System.out.println(taggedSentence);
-		    String tokenizePOS[] = taggedSentence.split("\\s+");
-		    //System.out.println(tokenizeRequest.length);
-		    //System.out.println(tokenizePOS.length);
-		    
-		    HashMap<String,LinkedList<String>> hm=new HashMap<>();
-			for(int i = 0;i<tokenizePOS.length;i++){
-				String tagsplit[] = tokenizePOS[i].split("/");
-				String tag=tagsplit[1];
-				String word=tagsplit[0];
-				LinkedList<String> list;
-				if(hm.containsKey(tag))
-					list=hm.get(tag);
-				else
-					list=new LinkedList<>();
-				list.add(word);
-				hm.put(tag, list);
-	        }
-  	  return hm;
+  	    String tokenizePOS[] = taggedSentence.split("\\s+");
+  	     
+  	    HashMap<String,LinkedList<String>> hm=new HashMap<>();
+		for(int i = 0;i<tokenizePOS.length;i++){
+			String tagsplit[] = tokenizePOS[i].split("/");
+			String tag=tagsplit[1];
+			String word=tagsplit[0];
+			LinkedList<String> list;
+			if(hm.containsKey(tag))
+				list=hm.get(tag);
+			else
+				list=new LinkedList<>();
+			list.add(word);
+			hm.put(tag, list);
+        }
+		return hm;
     }
     
 }

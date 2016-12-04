@@ -2,7 +2,6 @@ package com.ar.head;
 
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -60,16 +59,7 @@ public class HeadWordParser {
            while (tMatcher.find()) {
              Tree nounPhrase = tMatcher.getMatch();
 
-             Tree headConstituent = hf.determineHead(nounPhrase);
-//             System.out.println("NP : " + nounPhrase);
-//             System.out.println("HC : " + headConstituent);
-             
-//             String headCons = headConstituent.toString();
-//             char[] headChar = headCons.toCharArray();
-//             char[] headCharRemovedBrackets = Arrays.copyOfRange(headChar, 1, headChar.length -1);
-//             String[] words = new String(headCharRemovedBrackets).split(" ");
-//             String headWord = words[1];
-             
+             Tree headConstituent = hf.determineHead(nounPhrase);             
              headWords.add(headConstituent.toString());
            }
     	}

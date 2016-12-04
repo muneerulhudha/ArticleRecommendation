@@ -93,6 +93,7 @@ public class Recommender {
 		
 	}
 
+	@SuppressWarnings("unused")
 	private static void printMap() {
 		// TODO Auto-generated method stub
 		for(Article a: articles.values()){
@@ -112,6 +113,7 @@ public class Recommender {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private static void printArticle(Article a) {
 		System.out.println(a.getFileName());
 		System.out.println("Nouns :");
