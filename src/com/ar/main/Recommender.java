@@ -42,11 +42,13 @@ public class Recommender {
 		
 		List<String> inputNamedEntity = inputArticle.getNamedEntities();
 		List<String> inputHeadWords = inputArticle.getHeadWords();
+		List<String> inputHypernymy = inputArticle.getHypernymy();
 		
 		for(Article a: articles.values()){
-			int count1 = 0, count2 = 0, count = 0;
+			int count1 = 0, count2 = 0, count3 = 0, count = 0;
 			List<String> testNamedEntity = a.getNamedEntities();
 			List<String> testHeadWords = a.getHeadWords();
+			List<String> testHypernymy = a.getHypernymy();
 			
 			List<String> common1 = new ArrayList<String>(inputNamedEntity);
 			common1.retainAll(testNamedEntity);
@@ -56,7 +58,11 @@ public class Recommender {
 			common2.retainAll(testHeadWords);
 			count2 = common2.size();
 			
-			count = (count1 * 4) + count2;
+			List<String> common3 = new ArrayList<String>(inputHypernymy);
+			common3.retainAll(testHypernymy);
+			count3 = common3.size();
+						
+			count = (count1 * 4) + count2 + (count3 * 2);
 			countMap.put(a.getFileName(), count);
 		}
 		
@@ -85,7 +91,7 @@ public class Recommender {
 	    		continue;
 	    	if(j>4)
 	    		break;
-	        System.out.println(me.getKey() + " " + me.getValue());
+	        System.out.println(me.getKey());
 	        Article art = articles.get(me.getKey());
 	        System.out.println(art.getContent());
 	        System.out.println("\n\n\n");
